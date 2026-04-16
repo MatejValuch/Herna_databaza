@@ -16,8 +16,13 @@
         <label for="dev">Názov vývojára:</label>
         <input type="text" name="dev">
         <br>
-        
-
+        <label for="krajina">Sídlo vývojára (štát):</label>
+        <input type="text" name="krajina">
+        <br>
+        <label for="typ">Typ vývojára (AAA, indie...):</label>
+        <input type="text" name="typ">
+        <br>
+        <input type="submit" value="Pridaj!" name="submit">
     </form>
     <?php 
     $server_conn = new mysqli("localhost", "root", "root");
@@ -36,15 +41,18 @@
     hra_id int primary key auto_increment,
     nazov varchar(30) unique not null, 
     zaner varchar(30) not null,
-    dev_nazov varchar(30) unique not null,
+    dev_id int,
     
-    foreign key (dev_nazov) references dev(dev_nazov);"
+    foreign key (dev_id) references dev(dev_id));";
 
     $dev = "CREATE TABLE IF NOT EXISTS dev(
     dev_id int primary key auto_increment,
     dev_nazov varchar(30) unique not null,
     krajina varchar(30) not null,
-    typ varchar(15) not null);"
+    typ varchar(15) not null);";
+
+    $query = mysqli_query($conn, $dev);
+    $query = mysqli_query($conn, $hra);
     ?>
 </body>
 </html>
