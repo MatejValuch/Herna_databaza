@@ -19,7 +19,7 @@
         <label for="krajina">Sídlo vývojára (štát):</label>
         <input type="text" name="krajina">
         <br>
-        <label for="typ">Typ vývojára (AAA, indie...):</label>
+        <label for="typ">Typ vývojára (AAA, indie, studio, corp...):</label>
         <input type="text" name="typ">
         <br>
         <input type="submit" value="Pridaj!" name="submit">
@@ -53,6 +53,12 @@
 
     $query = mysqli_query($conn, $dev);
     $query = mysqli_query($conn, $hra);
+
+    $dummy_hra = "INSERT INTO hra (nazov, zaner, dev_id) VALUES ('Team Fortress 2', 'FPS shooter', '1');";
+    $dummy_dev = "INSERT INTO dev (dev_nazov, krajina, typ) VALUES ('VALVe', 'USA', 'corporation')";
+
+    $query = mysqli_query($conn, $dummy_dev);
+    $query = mysqli_query($conn, $dummy_hra);
     ?>
 </body>
 </html>
