@@ -26,10 +26,10 @@
     </form>
     <?php 
     $server_conn = new mysqli("localhost", "root", "root");
-    $createDB = "CREATE DATABASE IF NOT EXISTS herna_databaza;";
+    $createDB = "CREATE DATABASE IF NOT EXISTS hernabaza;";
     $query = mysqli_query($server_conn, $createDB);
 
-    $conn = mysqli_connect("localhost", "root", "root", "herna_databaza");
+    $conn = mysqli_connect("localhost", "root", "root", "hernabaza");
 
     if (!$conn){
         echo "Nepodarilo sa pripojiť k databáze.";
@@ -53,12 +53,31 @@
 
     $query = mysqli_query($conn, $dev);
     $query = mysqli_query($conn, $hra);
-
-    $dummy_hra = "INSERT INTO hra (nazov, zaner, dev_id) VALUES ('Team Fortress 2', 'FPS shooter', '1');";
-    $dummy_dev = "INSERT INTO dev (dev_nazov, krajina, typ) VALUES ('VALVe', 'USA', 'corporation')";
-
+    
+    $dummy_dev = "INSERT IGNORE INTO dev (dev_nazov, krajina, typ) VALUES ('VALVe', 'USA', 'corporation');";
+    $dummy_hra = "INSERT IGNORE INTO hra (nazov, zaner, dev_id) VALUES ('Team Fortress 2', 'FPS shooter', '1');";
+    
     $query = mysqli_query($conn, $dummy_dev);
     $query = mysqli_query($conn, $dummy_hra);
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $nazov = $_POST["nazov"];
+        $zaner = $_POST["zaner"];
+        $dev = $_POST["dev"];
+        $krajina = $_POST["krajina"];
+        $typ = $_POST["typ"];
+
+        $adata_dev = "INSERT INTO dev (dev_nazov, krajina, typ) VALUES ('$dev', '$krajina', '$typ');";
+        $query = mysqli_query($conn, $adata_dev);
+
+        $idecko = mysqli_query($conn, "SELECT dev_id FROM dev WHERE dev_nazov = '$dev'");
+        $row = mysqli_fetch_assoc($idecko);
+        $dev_id = $row['dev_id'];
+
+        $adata_hra = "INSERT INTO hra (nazov, zaner, dev_id) VALUES ('$nazov', '$zaner', '$dev_id');";
+
+        $query = mysqli_query($conn, $adata_hra);
+    }
     ?>
 </body>
 </html>
