@@ -9,27 +9,32 @@
 <body>
    <div class="container mt-5">
     <div class="card p-4 shadow-sm">
-        <h2 class="mb-4">Pridať novú hru</h2>
+        <div>
+            <div class="d-flex justify-content-between">
+                <h2 class="mb-4">Pridať novú hru</h2>
+                <a href="kniznica.php" class="btn btn-primary fs-4">Moja Knižnica</a>
+            </div>
+        </div>
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Názov hry:</label>
-                <input type="text" name="nazov" class="form-control">
+                <input type="text" name="nazov" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Žáner hry:</label>
-                <input type="text" name="zaner" class="form-control">
+                <input type="text" name="zaner" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Názov vývojára:</label>
-                <input type="text" name="dev" class="form-control">
+                <input type="text" name="dev" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Sídlo vývojára:</label>
-                <input type="text" name="krajina" class="form-control">
+                <input type="text" name="krajina" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Typ vývojára:</label>
-                <input type="text" name="typ" class="form-control">
+                <input type="text" name="typ" class="form-control" required>
             </div>
             <button type="submit" name="submit" class="btn btn-primary w-100">Pridaj!</button>
         </form>
