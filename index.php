@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <form method="POST">
-        <label for="nazov">Názov hry:</label>
-        <input type="text" name="nazov">
-        <br>
-        <label for="zaner">Žáner hry:</label>
-        <input type="text" name="zaner">
-        <br>
-        <label for="dev">Názov vývojára:</label>
-        <input type="text" name="dev">
-        <br>
-        <label for="krajina">Sídlo vývojára (štát):</label>
-        <input type="text" name="krajina">
-        <br>
-        <label for="typ">Typ vývojára (AAA, indie, studio, corp...):</label>
-        <input type="text" name="typ">
-        <br>
-        <input type="submit" value="Pridaj!" name="submit">
-    </form>
+   <div class="container mt-5">
+    <div class="card p-4 shadow-sm">
+        <h2 class="mb-4">Pridať novú hru</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Názov hry:</label>
+                <input type="text" name="nazov" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Žáner hry:</label>
+                <input type="text" name="zaner" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Názov vývojára:</label>
+                <input type="text" name="dev" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sídlo vývojára:</label>
+                <input type="text" name="krajina" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Typ vývojára:</label>
+                <input type="text" name="typ" class="form-control">
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary w-100">Pridaj!</button>
+        </form>
+    </div>
+</div>
     <?php 
     $server_conn = new mysqli("localhost", "root", "root");
     $createDB = "CREATE DATABASE IF NOT EXISTS hernabaza;";
