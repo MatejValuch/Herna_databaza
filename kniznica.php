@@ -16,11 +16,8 @@
 
         if (isset($_POST['delete_id'])) {
             $deletid = $_POST['delete_id'];
-            $deletdev = $_POST["delete_dev"];
             $delete_hra = "DELETE FROM hra WHERE hra_id = '$deletid'";
-            $delete_dev = "DELETE FROM dev WHERE dev_nazov = '$deletdev'";
             $query = mysqli_query($conn, $delete_hra);
-            $query = mysqli_query($conn, $delete_dev);
         }
 
         $select = "SELECT hra.hra_id, hra.nazov, hra.zaner, dev.dev_nazov, dev.krajina, dev.typ FROM hra INNER JOIN dev ON hra.dev_id = dev.dev_id;";
@@ -30,8 +27,12 @@
             ?>
             <form method="POST" style="display:inline;">
                 <input type="hidden" name="delete_id" value="<?php echo $row['hra_id'];?>">
-                <input type="hidden" name="delete_dev" value="<?php echo $row["dev_nazov"];?>">
                 <button type="submit">Delete</button>
+            </form>
+
+            <form action="uprava.php" method="GET" style="display:inline;">
+                <input type="hidden" name="id" value="<?php echo $row['hra_id'];?>">
+                <button type="submit">Upraviť</button>
             </form>
             <?php
             echo "<br>";
